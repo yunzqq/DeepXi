@@ -103,6 +103,18 @@ def ibm(xi):
 	"""
 	return np.greater(xi, 1, dtype=np.float32) # IBM (1 corresponds to 0 dB).
 
+def mmse_noisetracking(xi, gamma):
+	"""
+	Computes the MMSE-Noise_PSD gain function.
+	Argument/s:
+		xi - a priori SNR.
+		gamma - a posteriori SNR.
+	Returns:
+		MMSE-Noise_PSD gain function.
+	"""
+	return np.add(np.divide(1, np.add(1,xi)), np.divide(xi,np.multiply(gamma, np.add(1,xi))))
+	# MMSE-Noise_PSD gain function.
+
 def gfunc(xi, gamma=None, gtype='mmse-lsa'):
 	"""
 	Computes the selected gain function.
